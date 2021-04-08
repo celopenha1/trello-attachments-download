@@ -1,0 +1,1 @@
+exports.findByCaderno =(cards, caderno) => cards.filter(card => card.name.match(caderno))
