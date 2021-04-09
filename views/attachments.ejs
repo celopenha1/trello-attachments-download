@@ -7,10 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
+
+<%-include("partials/navbar")%>
 
 <body>
 
@@ -42,17 +46,22 @@
 
 
   <script>
+
     $(document).ready(function () {
 
       $('#table_id').DataTable({
-        data: JSON.parse('<%-JSON.stringify(attachments)%>'),
+        data: JSON.parse('<%-JSON.stringify(att)%>'),
         columns: [
-          { "data": "nome" },
+          { title: "Index", data: "index"},
+          { title: "Matéria", data: "name" },
+          { title: "Usuário", data: "idMember" },
+          { title: "Data do anexo", data: "date" }
         ],
         rowCallback: (row, data) => {
+        },
+        createdRow: (row, data, index)=>{
 
         }
-
       });
     });
   </script>
