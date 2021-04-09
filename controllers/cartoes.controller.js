@@ -3,6 +3,9 @@ const axios          = require('axios').default,
       cardModel      = require('../models/cartoes'),
       cartoesService = require('../services/cards.services');
 
+const hello = 'oi';
+
+
 const nomeParaData = (nome) => {
   console.log(nome)
   if (nome.split(' ')[1].split('.').length === 2) {
