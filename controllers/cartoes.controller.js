@@ -25,9 +25,14 @@ const transformCards = cards=> cards.map((card, index)=>{
   });
 
 exports.executivos = async (req, res) => {
-  const cardsExecutivo = await cartoesService.findByCaderno('EXECUTIVO');
-  const jornais = transformCards(cardsExecutivo);
-  res.render('jornais', { jornais });
+
+  try{
+    const cardsExecutivo = await cartoesService.findByCaderno('EXECUTIVO');
+    const jornais = transformCards(cardsExecutivo);
+    res.render('jornais', { jornais });
+  }catch(error){
+    console.log(error)
+  }
 
 }
 exports.terceiros = async (req, res) => {
