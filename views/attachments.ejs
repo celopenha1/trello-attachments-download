@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Matérias</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -14,57 +16,103 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
 
-<%-include("partials/navbar")%>
-
+<%-include("partials/navbar", {cardName})%>
 <body>
 
   <div class="container">
-    <div class="row">
-      <table id="table_id" class="display">
-        <thead>
-          <tr>
-          </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-      </table>
+    <div style="margin-bottom: 20px;" class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg 12">
+        <button onClick="window.location.reload();" style="margin-right: 20px;" class="btn btn-lg btn-default"><i class="fas fa-redo-alt"></i></button>
+      </div>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <h1><%=cardName%></h1>
+      </div>
+      
+      <button class="btn btn-success btn-lg">
+        <a href="/download-materias/<%=cardId%>" > <i class="fa fa-download" aria-hidden="true"></i>DOWNLOAD</a></button>
+    </div>
+    <div class="row">
+      <%-include("partials/datatable")%>
+
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  <div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
+  
+      <script>
+const cardId = JSON.parse('<%-JSON.stringify(cardId)%>');
 
-  <script>
-
-    $(document).ready(function () {
-
-      $('#table_id').DataTable({
-        data: JSON.parse('<%-JSON.stringify(att)%>'),
-        columns: [
-          { title: "Index", data: "index"},
-          { title: "Matéria", data: "name" },
-          { title: "Usuário", data: "idMember" },
-          { title: "Data do anexo", data: "date" }
-        ],
-        rowCallback: (row, data) => {
-        },
-        createdRow: (row, data, index)=>{
-
-        }
+        axios({
+          url: `/download-materias/${cardId}`,
+          method:'get',
+          headers:{
+              'Content-Type': 'multipart/form-data',
+          },
+          responseType:'arraybuffer' // If we don't mention we can't get data in desired format
+      })
+      .then(async response => {
+          console.log("got al files in api ");
+          let blob = await new Blob([response.data], { type: 'application/zip' }) //It is optional;
+          console.log(blob, 'ois')
+          download(response.data,"attachement.zip","application/zip") //this is third party it will prompt download window in browser.
+          return response.data;
+      })
+  
+      </script>
+    <script>
+      $(document).ready(function () {
+  
+        $('#table_id').DataTable({
+          fixedHeader: {
+          header: false,
+          footer: true
+      },
+          scrollY:        '60vh',
+          scrollCollapse: true,
+          paging:         false,
+  
+          data: JSON.parse('<%-JSON.stringify(materias)%>'),
+          columns: [
+            { title: "Index", data: "index"},
+            { title: "Matéria", data: "name" },
+            { title: "Usuário", data: "idMember" },
+            // { title: "Data", data: "date" },
+            // { title: "Horário", data: "time" },
+            {title: "Data Anexo", data: "fullDate"}
+          ],
+          rowCallback: (row, data) => {
+            row.style.cursor = 'pointer';
+  
+            row.onclick= ()=>{
+              row.style.background = 'green'
+              row.style.color = 'white'
+  
+            }
+            
+          },
+          createdRow: (row, data, index)=>{
+          }
+        });
       });
-    });
-  </script>
+    </script>
+  </div>
+
 </body>
 
 </html>

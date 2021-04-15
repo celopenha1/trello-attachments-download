@@ -6,7 +6,7 @@ const cardModel = require('../models/cartoes');
 const findCardsFromBoard = () => axios.get(url.getCards);
 
 
-exports.findByCaderno = (caderno) => {
+exports.findByCaderno = caderno => {
   return findCardsFromBoard()
     .then(cards => cardModel.findByCaderno(cards.data, caderno))
 }

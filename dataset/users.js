@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "id": "5e790194cba12a7a85c8448d",
     "username": "adaline5",

@@ -1,33 +1,65 @@
 const attachmentService = require('../services/attachments.services');
+const fs = require('fs');
+const path = require('path');
+const moment = require('moment');
+const axios = require('axios').default;
+const users = require('../dataset/users');
 
-exports.getAttachments = (req, res) => {
-  const { cardId } = req.params;
 
-  attachmentService.findCardAttachments(cardId).then(attachments => {
+exports.getAttachments = async (req, res) => {
 
-    const att = attachments.map((attachment, index) => {
-      return {
-        index,
-        idMember: attachment.idMember,
-        date: attachment.date,
-        name: attachment.name,
-        url: attachment.url
-      }
-    });
+  const { cardId, cardName } = req.params;
+  console.log(req.params)
+  console.log(cardName)
 
-    res.render('attachments', { att })
+  const attachements = await attachmentService.findCardAttachments(cardId);
+
+  const materias = attachements.map((attachment, index) =>{
+    return {
+      index,
+      idMember: attachment.idMember,
+      fullDate:attachment.date,
+      name: attachment.name,
+      url: attachment.url
+    }
+  });
+  res.render('attachments', { materias, cardName, cardId })
+}
+
+
+
+
+exports.downloadAttachments =  (req, res)=>{
+  const {cardId} = req.params
+  const zipPath = path.join(__dirname,`../${cardId}.zip`);
+  const folderPath = path.join(__dirname,`../${cardId}`);
+  console.log(folderPath)
+  console.log(zipPath);
+  const stat = fs.statSync(zipPath);
+  res.writeHead(200, {
+    'Content-Type': 'application/octet-stream',
+        'Content-Length': stat.size,
+        'Content-Disposition': 'attachment; filename=teste.zip'
   })
-  //   fs.mkdir(`./${data.name}`, (err) => {
-  //     if (err) {
-  //       console.log(err)
-  //     }
-  //     else {
-  //       console.log(`diretório: ${data.name} foi criado com sucesso`)
-  //     }
-  //   });
-  //   attachmentData.map(attachment => {
-  //     const document = fs.createWriteStream(`./${data.name}/${attachment.name}`);
-  //     http.get(attachment.url, (response) => response.pipe(document));
-  //   });
+  var readStream = fs.createReadStream(zipPath);
+  readStream.pipe(res);
 
+  setTimeout(()=>{
+
+    const callback = (error) => !error? console.log(error) : console.log('deletado com sucesso!');
+
+    fs.unlink(zipPath, callback);
+
+
+    fs.rmdir(folderPath, { recursive: true }, (err) => {
+      if (err) {
+          throw err;
+      }
+  
+      console.log(`${folderPath} is deleted!`);
+  });
+
+
+
+  }, 5000)
 }

@@ -10,12 +10,18 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
   <style>
     a[class="btn"] {
       display: block !important;
       padding: 20px;
       margin: 20px;
+    }
+
+    a{
+      margin: 0 20px;
+      display: block;
     }
   </style>
 </head>
@@ -24,13 +30,17 @@
 <%-include("partials/navbar")%>
 
   <body>
-
-    <div class="container">
-      <div class="fow">
-        <a href="/executivos" class="btn btn-large btn-primary">EXECUTIVO</a>
-        <a href="/terceiros" class="btn btn-large btn-primary">TERCEIROS</a>
-        <a href="/terceiros-casacivil" class="btn btn-large btn-primary">MATÉRIAS CASA CIVIL TERCEIROS</a>
-        <a href="/atos-casacivil" class="btn btn-large btn-primary">ATOS CASA CIVIL </a>
+    <iframe src="https://docs.google.com/gview?url=&embedded=true"></iframe>
+    
+    <div style="margin-top: 90px;" class="container">
+      <header style="display: block; margin: 60px 20px;">
+        <h1>SELECIONE O CADERNO PARA VER AS EDIÇÕES</h1>
+      </header>
+      <div class="row"> 
+        <a href="/executivos" class="btn btn-lg btn-success"><i class="fas fa-book"></i> EXECUTIVO</a>
+        <a href="/terceiros" class="btn btn-lg btn-success"><i class="fas fa-book"></i> TERCEIROS</a>
+        <a href="/terceiros-casacivil" class="btn btn-lg btn-success"><i class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a>
+        <a href="/atos-casacivil" class="btn btn-lg btn-success"><i class="fas fa-book"></i> ATOS CASA CIVIL </a>
       </div>
     </div>
 
