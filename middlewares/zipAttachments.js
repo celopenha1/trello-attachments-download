@@ -1,5 +1,4 @@
 const fs = require('fs');
-const archiver = require('archiver');
 const https= require('https');
 const AdminZip = require('adm-zip');
 

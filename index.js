@@ -3,8 +3,6 @@ const express      = require('express'),
       bodyParser   = require('body-parser'),
       app          = express();
 
-      var fs = require('fs');
-      var archiver = require('archiver');
 
       const trelloApi = require('./services/trelloApiUrls');
       const axios = require('axios').default;
@@ -40,7 +38,7 @@ app.get('/testando', (req, res)=>{
   ).catch(err=> console.log(err));
 })
 
-app.listen(3000, (req, res) => {
+app.listen(process.env.PORT || 3000, (req, res) => {
   console.log('app rodando na porta 3000')
 });
 

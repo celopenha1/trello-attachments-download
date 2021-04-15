@@ -1,7 +1,6 @@
 const attachmentService = require('../services/attachments.services');
 const fs = require('fs');
 const path = require('path');
-const moment = require('moment');
 const axios = require('axios').default;
 const users = require('../dataset/users');
 
