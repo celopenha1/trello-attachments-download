@@ -48,8 +48,6 @@ exports.downloadAttachments =  (req, res)=>{
     const callback = (error) => !error? console.log(error) : console.log('deletado com sucesso!');
 
     fs.unlink(zipPath, callback);
-
-
     fs.rmdir(folderPath, { recursive: true }, (err) => {
       if (err) {
           throw err;
