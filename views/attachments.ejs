@@ -6,11 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matérias</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -22,15 +19,20 @@
   <div class="container">
 
     <div style="margin-bottom: 20px;" class="row">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg 12">
-        <button onClick="window.location.reload();" style="margin-right: 20px;" class="btn btn-lg btn-default"><i class="fas fa-redo-alt"></i></button>
+
+      <div style="text-align: center; margin-top: 20px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h1 ><%=cardName%></h1>
       </div>
-      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-        <h1><%=cardName%></h1>
+    
+    </div>
+
+    <div class="row">
+      <button style="width: 100%; margin-bottom: 20px;" onclick="downloadMaterias()" class="btn btn-success btn-lg"><i class="fa fa-download " aria-hidden="true"></i> DOWNLOAD</button>
+    </div>
+    <div class="row">
+      <div style="display: none" class="count">
+        <h2 class="counter">Aguarde alguns segundos para baixar as matérias do Trello....</h2>
       </div>
-      
-      <button class="btn btn-success btn-lg">
-        <a href="/download-materias/<%=cardId%>" > <i class="fa fa-download" aria-hidden="true"></i>DOWNLOAD</a></button>
     </div>
     <div class="row">
       <%-include("partials/datatable")%>
@@ -56,9 +58,18 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"></script>
   
       <script>
-const cardId = JSON.parse('<%-JSON.stringify(cardId)%>');
+        const cardId = JSON.parse('<%-JSON.stringify(cardId)%>');
+        const cardName = JSON.parse('<%-JSON.stringify(cardName)%>');
 
-        axios({
+        const downloadMaterias = ()=>{
+          document.querySelector('.count').style.display  = 'block';
+
+          setTimeout( ()=>{
+            document.querySelector('.count').style.display = 'none'
+          }, 13000)
+
+
+          axios({
           url: `/download-materias/${cardId}`,
           method:'get',
           headers:{
@@ -67,12 +78,12 @@ const cardId = JSON.parse('<%-JSON.stringify(cardId)%>');
           responseType:'arraybuffer' // If we don't mention we can't get data in desired format
       })
       .then(async response => {
-          console.log("got al files in api ");
-          let blob = await new Blob([response.data], { type: 'application/zip' }) //It is optional;
-          console.log(blob, 'ois')
-          download(response.data,"attachement.zip","application/zip") //this is third party it will prompt download window in browser.
+          console.log(response)          
+          download(response.data,`${cardName}.zip`,"application/zip") //this is third party it will prompt download window in browser.
           return response.data;
-      })
+      });
+        }
+
   
       </script>
     <script>

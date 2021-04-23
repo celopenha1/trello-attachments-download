@@ -32,14 +32,14 @@ exports.downloadAttachments =  (req, res)=>{
   const {cardId} = req.params
   const zipPath = path.join(__dirname,`../${cardId}.zip`);
   const folderPath = path.join(__dirname,`../${cardId}`);
-  console.log(folderPath)
-  console.log(zipPath);
+
   const stat = fs.statSync(zipPath);
   res.writeHead(200, {
     'Content-Type': 'application/octet-stream',
         'Content-Length': stat.size,
         'Content-Disposition': 'attachment; filename=teste.zip'
-  })
+  });
+  
   var readStream = fs.createReadStream(zipPath);
   readStream.pipe(res);
 

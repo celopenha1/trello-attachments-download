@@ -4,7 +4,6 @@ const AdminZip = require('adm-zip');
 
 const attachmentService = require('../services/attachments.services');
 
-
 exports.createZipFromAttachments = async (req, res, next)=>{
 
   const { cardId } = req.params;
@@ -14,7 +13,6 @@ exports.createZipFromAttachments = async (req, res, next)=>{
   const callback = err=> err? console.log(err) : console.log(`diretório: ${cardId} foi criado com sucesso`)
 
   const file = new AdminZip();
-
 
   const directoryPath = `./${cardId}`;
 
@@ -26,11 +24,11 @@ exports.createZipFromAttachments = async (req, res, next)=>{
   
    attachments.map(attachment => {
     const materia = fs.createWriteStream(`./${cardId}/${attachment.name}`);
-    https.get(attachment.url, (response) =>response.pipe(materia));
+    https.get(attachment.url, (response) =>{ response.on('data', (err, chunk)=> console.log(chunk)); response.pipe(materia)} );
   });
 
   setTimeout(()=>{
-    file.addLocalFolder(cardIdString, cardIdString);
+    file.addLocalFolder(cardIdString);
 
     file.writeZip(`${cardIdString}.zip`);
 

@@ -25,29 +25,44 @@ const transformCards = cards=> cards.map((card, index)=>{
   });
 
 exports.executivos = async (req, res) => {
-
   try{
     const cardsExecutivo = await cartoesService.findByCaderno('EXECUTIVO');
     const jornais = transformCards(cardsExecutivo);
     res.render('jornais', { jornais });
   }catch(error){
-    console.log(error)
+    res.status(500).json({error})
   }
-
 }
 exports.terceiros = async (req, res) => {
-  const cardsTerceiros = await cartoesService.findByCaderno('TERCEIROS');
-  const jornais = transformCards(cardsTerceiros);
-  res.render('jornais', { jornais });
+  try{
+    const cardsTerceiros = await cartoesService.findByCaderno('TERCEIROS');
+    const jornais = transformCards(cardsTerceiros);
+    res.render('jornais', { jornais });
+
+  }catch(error){
+    res.status(500).json({error})
+  }
 }
 
 exports.terceirosCasaCivil = async (req, res) => {
-  const terceirosCasaCivil = await cartoesService.findByCaderno('TERCEIROS CASACIVIL');
-  const jornais = transformCards(terceirosCasaCivil);
-  res.render('jornais', { jornais });
+  try{
+    const terceirosCasaCivil = await cartoesService.findByCaderno('TERCEIROS CASACIVIL');
+    const jornais = transformCards(terceirosCasaCivil);
+    res.render('jornais', { jornais });
+  }catch(error){
+    res.status(500).json({error})
+
+  }
+
 }
 exports.atos = async (req, res) => {
-  const atos = await cartoesService.findByCaderno('ATOS');
-  const jornais = transformCards(atos);
-  res.render('jornais', { jornais });
+  try{
+    const atos = await cartoesService.findByCaderno('ATOS');
+    const jornais = transformCards(atos);
+    res.render('jornais', { jornais });
+  }catch(error){
+    res.status(500).json({error})
+
+  }
+
 }
