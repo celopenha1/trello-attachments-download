@@ -109,13 +109,11 @@
           ],
           rowCallback: (row, data) => {
             row.style.cursor = 'pointer';
-  
-            row.onclick= ()=>{
+            row.addEventListener('click', (e)=>{
+              console.log(e);
               row.style.background = 'green'
-              row.style.color = 'white'
-  
-            }
-            
+              row.style.color = 'white';
+            })
           },
           createdRow: (row, data, index)=>{
           }
