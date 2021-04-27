@@ -23,6 +23,14 @@
       margin: 0 20px;
       display: block;
     }
+    .btn-edicao{
+      margin: 10px auto;
+      width: 100%;
+      padding: 20px;
+    }
+    p{
+      font-size: 1.3em;
+    }
   </style>
 </head>
 
@@ -32,15 +40,16 @@
   <body>
     
     <div style="margin-top: 90px;" class="container">
-      <header style="display: block; margin: 60px 20px;">
-        <h1>SELECIONE O CADERNO PARA VER AS EDIÇÕES</h1>
+      <header style="display: block;text-align: center;">
+        <h1>Matérias DOEMA (TRELLO)</h1>
+        <p>Aqui você irá encontrar todas as matérias do Trello divididadas por caderno e por data</p>
+        <p>Basta Selecionar o caderno desejado e, em seguida, selecione a data da edição</p>
       </header>
-      <div class="row"> 
-        <a href="/executivos" class="btn btn-lg btn-success"><i class="fas fa-book"></i> EXECUTIVO</a>
-        <a href="/terceiros" class="btn btn-lg btn-success"><i class="fas fa-book"></i> TERCEIROS</a>
-        <a href="/terceiros-casacivil" class="btn btn-lg btn-success"><i class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a>
-        <a href="/atos-casacivil" class="btn btn-lg btn-success"><i class="fas fa-book"></i> ATOS CASA CIVIL </a>
-      </div>
+      <div style="margin-top: 50px;" class="row"><a href="/executivos" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> EXECUTIVO</a></div>
+      <div class="row"><a href="/terceiros" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> TERCEIROS</a></div>
+      <div class="row"><a href="/atos-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> ATOS CASA CIVIL </a></div>
+      <div class="row"><a href="/terceiros-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a></div>
+
     </div>
 
 
