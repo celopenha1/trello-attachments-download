@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  
+
   <style>
     a[class="btn"] {
       display: block !important;
@@ -19,16 +19,18 @@
       margin: 20px;
     }
 
-    a{
+    a {
       margin: 0 20px;
       display: block;
     }
-    .btn-edicao{
+
+    .btn-edicao {
       margin: 10px auto;
       width: 100%;
       padding: 20px;
     }
-    p{
+
+    p {
       font-size: 1.3em;
     }
   </style>
@@ -38,26 +40,29 @@
 <%-include("partials/navbar")%>
 
   <body>
-    
+
     <div style="margin-top: 90px;" class="container">
       <header style="display: block;text-align: center;">
         <h1>Matérias DOEMA (TRELLO)</h1>
         <p>Aqui você irá encontrar todas as matérias do Trello divididadas por caderno e por data</p>
         <p>Basta Selecionar o caderno desejado e, em seguida, selecione a data da edição</p>
       </header>
-      <div style="margin-top: 50px;" class="row"><a href="/executivos" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> EXECUTIVO</a></div>
-      <div class="row"><a href="/terceiros" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> TERCEIROS</a></div>
-      <div class="row"><a href="/atos-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> ATOS CASA CIVIL </a></div>
-      <div class="row"><a href="/terceiros-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a></div>
+      <div style="margin-top: 50px;" class="row"><a href="/executivos" class="btn btn-lg btn-primary btn-edicao"><i
+            class="fas fa-book"></i> EXECUTIVO</a></div>
+      <div class="row"><a href="/terceiros" class="btn btn-lg btn-primary btn-edicao"><i class="fas fa-book"></i>
+          TERCEIROS</a></div>
+      <div class="row"><a href="/atos-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i>
+          ATOS CASA CIVIL </a></div>
+      <div class="row"><a href="/terceiros-casacivil" class="btn btn-lg btn-success btn-edicao"><i
+            class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a></div>
 
     </div>
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"></script>

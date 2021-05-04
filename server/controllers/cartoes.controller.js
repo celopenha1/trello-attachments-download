@@ -20,7 +20,7 @@ const transformCards = cards=> cards.map((card, index)=>{
       id: card.id,
       name: card.name,
       data: nomeParaData(card.name),
-      labels: card.labels.map(label => label.name)
+      labels: card.labels.map(label => label.name.split(' ')[0].split('0')[0])
     }
   });
 

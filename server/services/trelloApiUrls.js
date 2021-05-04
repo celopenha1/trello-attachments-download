@@ -1,6 +1,6 @@
-const dotenv  = require('dotenv'),
-      env     = dotenv.config().parsed,
-      baseUrl = 'https://api.trello.com/1';
+const baseUrl = 'https://api.trello.com/1',
+      dotenv  = require('dotenv'),
+      env     = dotenv.config().parsed;
 
 module.exports = {
   getCards: `${baseUrl}/boards/${process.env.TRELLO_BOARD_ID}/cards?${process.env.TRELLO_CREDENTIALS}`,
