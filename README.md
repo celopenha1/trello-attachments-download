@@ -2,7 +2,7 @@
 :white_check_mark: A server-side rendering solution to make some specific workflows in TRELLO using
 [TRELLO REST API](https://developer.atlassian.com/cloud/trello/rest/)
 
-# MAING PAGE:
+# MAIN PAGE:
 Here you can select the type of our personal entity (executivo, terceiros... etc) and the backend will make the api call, mapping all the information based on our business model and send to fron-end.
 
 <p align="center">
