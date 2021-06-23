@@ -1,7 +1,7 @@
 {
   "name": "trello-attachments",
   "version": "1.0.0",
-  "description": "",
+  "description": ":white_check_mark: A server-side rendering solution to make some specific workflows in TRELLO using [TRELLO REST API](https://developer.atlassian.com/cloud/trello/rest/)",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -17,5 +17,14 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celopenha/trello-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/celopenha/trello-api/issues"
+  },
+  "homepage": "https://github.com/celopenha/trello-api#readme"
 }
