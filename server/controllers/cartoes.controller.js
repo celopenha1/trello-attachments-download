@@ -16,7 +16,7 @@ const nomeParaData = (nome) => {
 
 const transformCards = cards=> cards.map((card, index)=>{
   return {
-      index,
+      index: parseInt(index)+1,
       id: card.id,
       name: card.name,
       data: nomeParaData(card.name),
