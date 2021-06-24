@@ -19,28 +19,52 @@
 
     <div class="container">
 
-      <div style="margin-bottom: 20px;" class="row">
 
-        <div style="text-align: center; margin-top: 20px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h1>
-            <%=cardName%>
-          </h1>
+
+      <div style="margin: 20px 0;" class="card text-center">
+        <div class="card-header">
+          Controle de Matérias do Trello
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-info"><%=cardName%></h5>
+          <p class="card-text">Atualize a página antes de compactar e baixar as matérias</p>
+          <button onClick="window.location.reload();" class="btn btn-outline-info my-2 my-sm-0"><i class="fa fa-sync-alt"></i> Atualizar Página</button>
+
+          <a onclick="downloadMaterias()" href="#" class="btn btn-info">
+            <i class="fa fa-download " aria-hidden="true"></i>
+            Compactar e Baixar</a>
+        </div>
+        <div class="card-footer text-muted">
+          Quantidade de matérias: xx
         </div>
       </div>
 
-      <div class="row">
-        <button style="width: 100%; margin-bottom: 20px;" onclick="downloadMaterias()" class="btn btn-success btn-lg"><i
-            class="fa fa-download " aria-hidden="true"></i> BAIXAR TODAS</button>
-      </div>
-      <div class="row">
+
+
+
+
+      <div class="row h-100 justify-content-center align-items-center">
         <div style="display: none" class="count">
           <h2 class="counter">Aguarde alguns segundos para baixar as matérias do Trello....</h2>
         </div>
       </div>
-      <div class="row">
-        <%-include("partials/datatable")%>
 
+
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12">
+          <table class="table table-striped table-bordered" style="width:100%" id="materias_table" class="display">
+            <thead>
+            </thead>
+            <tbody>
+          
+            </tbody>
+            <tfoot>
+          
+            </tfoot>
+          </table>
+        </div>
       </div>
+
     </div>
 
     <div>
@@ -84,31 +108,35 @@
 
 
       </script>
+
+
       <script>
         $(document).ready(function () {
 
-          $('#table_id').DataTable({
+          $('#materias_table').DataTable({
             fixedHeader: {
-              header: false,
-              footer: true
+            header: true,
+            footer: true
+        },
+            language: {
+              url: "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
             },
-            scrollY: '60vh',
-            scrollCollapse: true,
-            paging: false,
+
+            paging: true,
             data: JSON.parse('<%-JSON.stringify(materias)%>'),
             columns: [
               { title: "Posição", data: "index" },
               { title: "Matéria", data: "name" },
-              { title: "Atendente", data: "idMember" },
-              // { title: "Data", data: "date" },
-              // { title: "Horário", data: "time" },
-              { title: "Data Anexo", data: "fullDate" }
+
+
+              { title: "Data Anexo", data: "fullDate" },
+              { title: "Atendente", data: "idMember" }
             ],
             rowCallback: (row, data) => {
               row.style.cursor = 'pointer';
               row.addEventListener('click', (e) => {
                 console.log(e);
-                row.style.background = 'green'
+                row.style.background = '#17a2b8'
                 row.style.color = 'white';
               })
             },
