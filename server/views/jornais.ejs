@@ -47,17 +47,10 @@
             paging: false,
             data: JSON.parse('<%-JSON.stringify(jornais)%>'),
             columns: [
-              { title: "Index", data: "index" },
+              { title: "Ordem", data: "index" },
               { title: "Nome", data: "name" },
               { title: "Data Edição", data: "data" },
-              { title: "Labels", data: "labels[0]" },
-              {
-
-                data: null,
-                className: "dt-center editor-edit",
-                defaultContent: '<i class="fa fa-download" aria-hidden="true">',
-                orderable: false
-              },
+              { title: "Labels", data: "labels[0]" }
             ],
             rowCallback: (row, data) => {
               row.onclick = () => {
