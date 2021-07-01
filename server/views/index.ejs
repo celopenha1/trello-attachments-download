@@ -11,8 +11,24 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;900&display=swap" rel="stylesheet">
   <style>
+
+    body{
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    header h1{
+      font-weight: 900;
+      color: rgb(18, 113, 221);
+      font-size: 9rem;
+    }
+
+    main{
+      padding: 20px;
+      margin-top: 100px;
+      
+    }
     a[class="btn"] {
       display: block !important;
       padding: 20px;
@@ -33,33 +49,122 @@
     p {
       font-size: 1.3em;
     }
+
+    .img-container {}
   </style>
 </head>
 
 
 <%-include("partials/navbar")%>
-  <input type="file" accept="image/*" capture="camera">
 
   <body>
 
-    <div style="margin-top: 90px;" class="container">
-      <header style="display: block;text-align: center;">
-        <h1>Matérias DOEMA (TRELLO)</h1>
-        <p>Aqui você irá encontrar todas as matérias do Trello divididadas por caderno e por data</p>
-        <p>Basta Selecionar o caderno desejado e, em seguida, selecione a data da edição</p>
+    <div class="container">
+
+
+
+      <header style="text-align: center; margin-top: 20px; ">
+        <h1 style="">DOEMA</h1>
+        <h3>Matérias do Trello</h3>
       </header>
-      <div style="margin-top: 50px;" class="row"><a href="/executivos" class="btn btn-lg btn-primary btn-edicao"><i
-            class="fas fa-book"></i> EXECUTIVO</a></div>
-      <div class="row"><a href="/terceiros" class="btn btn-lg btn-primary btn-edicao"><i class="fas fa-book"></i>
-          TERCEIROS</a></div>
-      <div class="row"><a href="/atos-casacivil" class="btn btn-lg btn-success btn-edicao"><i class="fas fa-book"></i>
-          ATOS CASA CIVIL </a></div>
-      <div class="row"><a href="/terceiros-casacivil" class="btn btn-lg btn-success btn-edicao"><i
-            class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS</a></div>
 
-    </div>
+      <div class="card-deck mb-3 text-center">
 
 
+        <div class="card mb-3 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">EXECUTIVO</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">132 /<small class="text-muted">matérias</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Última matéria inserida:</li>
+              <li>Contrato 0054</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Acessar</button>
+          </div>
+        </div>
+        <div class="card mb-3 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">TERCEIROS</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">ACESSAR</button>
+          </div>
+        </div>
+        <div class="card mb-3 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">ATOS CASA CIVIL</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">ACESSAR</button>
+          </div>
+        </div>
+
+        <div class="card mb-3 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">MATÉRIAS CASA CIVIL</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">ACESSAR</button>
+          </div>
+        </div>
+
+
+      </div>
+      <main>
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="row" ">
+              <a href="/executivos" class="btn btn-lg btn-primary btn-edicao">
+                <i class="fas fa-book"></i> EXECUTIVO</a>
+            </div>
+            <div class="row">
+              <a href="/terceiros" class="btn btn-lg btn-primary btn-edicao">
+                <i class="fas fa-book"></i>TERCEIROS</a>
+            </div>
+            <div class="row">
+              <a href="/atos-casacivil" class="btn btn-lg btn-success btn-edicao">
+                <i class="fas fa-book"></i>ATOS CASA CIVIL
+              </a>
+            </div>
+            <div class="row">
+              <a href="/terceiros-casacivil" class="btn btn-lg btn-success btn-edicao">
+                <i class="fas fa-book"></i> MATÉRIAS CASA CIVIL TERCEIROS
+              </a>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center;" class="col-sm-6 col-md-6 col-lg-6">
+            <div style="" class="img-container">
+              <img width="100%" src="/img/materias.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </main>
+      </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"

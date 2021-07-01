@@ -3,6 +3,8 @@ const express      = require('express'),
       bodyParser   = require('body-parser'),
       app          = express();
 
+
+app.use(express.static('public'));
 app.use(require('./server/routes/index'));
 app.use(require('./server/routes/materia.routes'));
 app.use(require('./server/routes/attachments.routes'));
