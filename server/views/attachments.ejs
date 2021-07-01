@@ -19,33 +19,55 @@
 
     <div class="container">
 
-      <div style="margin-bottom: 20px;" class="row">
 
-        <div style="text-align: center; margin-top: 20px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h1>
-            <%=cardName%>
-          </h1>
+
+      <div style="margin: 20px 0;" class="card text-center">
+        <div class="card-header">
+          Controle de Matérias do Trello
         </div>
+        <div class="card-body">
+          <h5 class="card-title text-info"><%=cardName%></h5>
+          <p class="card-text">Atualize a página antes de compactar e baixar as matérias</p>
+          <button onClick="window.location.reload();" class="btn btn-outline-info my-2 my-sm-0"><i class="fa fa-sync-alt"></i> Atualizar Página</button>
 
+          <a onclick="downloadMaterias()" href="#" class="btn btn-info">
+            <i class="fa fa-download " aria-hidden="true"></i>
+            Compactar e Baixar</a>
+        </div>
+        <div class="card-footer text-muted">
+          Quantidade de matérias: xx
+        </div>
       </div>
 
-      <div class="row">
-        <button style="width: 100%; margin-bottom: 20px;" onclick="downloadMaterias()" class="btn btn-success btn-lg"><i
-            class="fa fa-download " aria-hidden="true"></i> BAIXAR TODAS</button>
-      </div>
-      <div class="row">
+
+
+
+
+      <div class="row h-100 justify-content-center align-items-center">
         <div style="display: none" class="count">
           <h2 class="counter">Aguarde alguns segundos para baixar as matérias do Trello....</h2>
         </div>
       </div>
-      <div class="row">
-        <%-include("partials/datatable")%>
 
+
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12">
+          <table class="table table-striped table-bordered" style="width:100%" id="materias_table" class="display">
+            <thead>
+            </thead>
+            <tbody>
+          
+            </tbody>
+            <tfoot>
+          
+            </tfoot>
+          </table>
+        </div>
       </div>
+
     </div>
 
     <div>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
       <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -71,47 +93,50 @@
             document.querySelector('.count').style.display = 'none'
           }, 13000)
 
+            async function get(url){
+              const response = await fetch(url);
 
-          axios({
-            url: `/download-materias/${cardId}`,
-            method: 'get',
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            responseType: 'arraybuffer' // If we don't mention we can't get data in desired format
-          })
-            .then(response => {
-              console.log(response)
-              download(response.data, `${cardName}.zip`, "application/zip") //this is third party it will prompt download window in browser.
-              return response.data;
-            });
+              console.log(response.status)
+              return response.arrayBuffer();
+            }
+
+            get("/download-materias/" + cardId)
+              .then(res=> {
+                download(res,`${cardName}.zip`, "application/zip" )} ).catch(e=> console.log(e));
         }
+
+
+
       </script>
+
+
       <script>
         $(document).ready(function () {
 
-          $('#table_id').DataTable({
+          $('#materias_table').DataTable({
             fixedHeader: {
-              header: false,
-              footer: true
+            header: true,
+            footer: true
+        },
+            language: {
+              url: "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
             },
-            scrollY: '60vh',
-            scrollCollapse: true,
-            paging: false,
+
+            paging: true,
             data: JSON.parse('<%-JSON.stringify(materias)%>'),
             columns: [
               { title: "Posição", data: "index" },
               { title: "Matéria", data: "name" },
-              { title: "Atendente", data: "idMember" },
-              // { title: "Data", data: "date" },
-              // { title: "Horário", data: "time" },
-              { title: "Data Anexo", data: "fullDate" }
+
+
+              { title: "Data Anexo", data: "fullDate" },
+              { title: "Atendente", data: "idMember" }
             ],
             rowCallback: (row, data) => {
               row.style.cursor = 'pointer';
               row.addEventListener('click', (e) => {
                 console.log(e);
-                row.style.background = 'green'
+                row.style.background = '#17a2b8'
                 row.style.color = 'white';
               })
             },
