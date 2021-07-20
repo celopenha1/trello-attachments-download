@@ -1,24 +1,44 @@
-# trello-api
-:white_check_mark: A server-side rendering solution to make some specific workflows in TRELLO using
-[TRELLO REST API](https://developer.atlassian.com/cloud/trello/rest/)
+# **:fa-bullhorn: Introduction**
 
-# MAIN PAGE:
-Here you can select the type of our personal entity (executivo, terceiros... etc) and the backend will make the api call, mapping all the information based on our business model and send to fron-end.
+- If you've used **trello** before, you probably won't need to download all attachments for a particular card, unless that's part of your organization.
 
-<p align="center">
-  <img src="https://i.imgur.com/q9D4R6c.png" width="800">
-</p>
+- In this project I implemented my personal solution for this.
 
-# And that's the result :)
-![Alt text](https://i.imgur.com/gPJlU5i.png)__
+- But how did I do it? The trello api only allows me to collect the urls from the attachments of a given card.
 
-Each element from this list is a 'list-card' item on our trello board. I just can mapping all list because they're named on specificy pattern, with this pattern I can get do some stuffs with REGEX.__
+- The process consists of getting the files through their url, saving them in a directory, and then compressing this directory to send to the front as a buffer-stream.
+- I used promises to ensure that all files downloaded correctly.
 
-And that's the best part: after click in some list, the backend will get all attachments from this specific list, and show to you 
-# like this:
-![Alt text](https://i.imgur.com/7N3Nqoj.png)__
+- here is part of the solution
 
+```javascript
+  const promises = attachments.map(attachment => {
+    return new Promise((resolve, reject) => {
+      let materia = fs.createWriteStream(`${tempPath}/${cardId}/${attachment.name}`);
+      https.get(attachment.url, res => res.pipe(materia))
+        .on('close', () => resolve(attachment.name))
+        .on('error', error => reject(error))
+    }).catch(error => console.error(error))
+  });
+  // solution for verify all ended request at same time
+  // and end middleware, and call the next function after all promise are resolved!
+  Promise.all(promises).then(results => {
+    console.log(results)
+    zipFile.addLocalFolder(folderAttachments);
+    zipFile.writeZip(`${folderAttachments}.zip`, e => console.log(e));
+    next();
+  }).catch(e => console.log(e))
+}
+```
 
-### SPECIAL: Personal solution to download ALL TRELLO ATTACHMENTS FROM LIST
-Yes!!!!! You can download every attachment from the specific list. With trello rest api you can not do that 
+[![example](https://i.imgur.com/4dNCi95.png "example")](https://i.imgur.com/4dNCi95.png "example")
+
+### Tecnologies
+- NodeJS
+- Express
+- adm-zip
+- Axios
+- EJS ( javascript template engine)
+
+@Author: Marcelo Penha Filho
 
