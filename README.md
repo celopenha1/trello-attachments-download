@@ -9,7 +9,7 @@
 - The process consists of getting the files through their url, saving them in a directory, and then compressing this directory to send to the front as a buffer-stream.
 - I used promises to ensure that all files downloaded correctly.
 
-- here is only the tip of the iceberg
+- here is some part of the solution
 
 ```javascript
   const promises = attachments.map(attachment => {
