@@ -27,7 +27,6 @@ exports.downloadAttachments = (req, res) => {
   const zipPath = path.join(__dirname,'../','temp',`${cardId}.zip`);
   const folderPath = path.join(__dirname,'../', 'temp', `${cardId}`);
   console.log(zipPath)
-  console.log('oi')
   const stat = fs.statSync(zipPath);
 
   res.writeHead(200, {
