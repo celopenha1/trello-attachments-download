@@ -111,6 +111,29 @@
 
 
       <script>
+
+        const materias = JSON.parse('<%-JSON.stringify(materias)%>');
+
+        const transformDate = (date)=>{
+          let data = new Date(date);
+          return 
+          `${String(data.getDay()).length === 1  ? '0' + String(data.getDay()) : String(data.getDay())  }
+          /${String(data.getMonth()).length === 1  ? '0' + String(data.getMonth()) : String(data.getMonth())}
+          /${data.getFullYear()}`
+        }
+        
+
+       const novaMateria =  materias.map(materia=>{
+          return {
+            index: materia.index,
+            fullDate: transformDate(materia.fullDate),
+            name: materia.name,
+            url: materia.url
+          }
+        });
+        console.log(novaMateria)
+
+        console.log(materias)
         $(document).ready(function () {
 
           $('#materias_table').DataTable({
@@ -130,7 +153,6 @@
 
 
               { title: "Data Anexo", data: "fullDate" },
-              { title: "Atendente", data: "idMember" }
             ],
             rowCallback: (row, data) => {
               row.style.cursor = 'pointer';
@@ -140,8 +162,6 @@
                 row.style.color = 'white';
               })
             },
-            createdRow: (row, data, index) => {
-            }
           });
         });
       </script>

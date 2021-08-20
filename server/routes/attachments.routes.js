@@ -1,15 +1,19 @@
 const router                    = require('express').Router();
-const zipMiddleware             = require('../middlewares/zipAttachments');
-const cardAttachmentsController = require('../controllers/attachment.controller');
+const attachmentsController = require('../controllers/attachment.controller');
 
 router.get(
   '/card-attachments/:cardId/:cardName', 
-  cardAttachmentsController.getAttachments
+  attachmentsController.getAttachments
 );
+
+// após clicar em download, esta rotá é executada 
+// executando os middlewares nesta sequência abaixo.
+
 router.get(
-  '/download-materias/:cardId',
-  zipMiddleware.createZipFromAttachments,  
-  cardAttachmentsController.downloadAttachments
+  '/download-materias/:cardId', 
+  attachmentsController.downloadAttachments, 
+  attachmentsController.zipAttachments, 
+  attachmentsController.sendZipFile
 );
 
 module.exports = router;

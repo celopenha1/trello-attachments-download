@@ -4,9 +4,9 @@ const
   fs = require('fs'),
   https = require('https'),
   path = require('path'),
-  axios = require('axios').default;
-trelloApi = require('../services/trelloApiUrls')
-zipFile = new AdminZip();
+  axios = require('axios').default,
+  trelloApi = require('../services/trelloApiUrls'),
+  zipFile = new AdminZip();
 
 exports.createZipFromAttachments = async (req, res, next) => {
 
@@ -22,14 +22,7 @@ exports.createZipFromAttachments = async (req, res, next) => {
     })
   }
 
-
-
-
-
-
-
   const attachments = await attachmentService.findCardAttachments(cardId);
-
 
   let promises = attachments.map(attachment => {
 
