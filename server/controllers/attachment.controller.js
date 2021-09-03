@@ -51,7 +51,7 @@ exports.downloadAttachments = async (req, res, next) => {
           https.get(options, res => {
             res.pipe(materia);
           })
-            .on('close', () => resolve(attachment.url))
+            .on('close', () => res.statusCode === 200 ? resolve(`Arquivo: ${attachment.name} baixado com sucesso`) : reject("Matéria não pôde ser baixada"))
             .on('error', error => reject(error))
         }).catch(error => console.error(error))
 
@@ -66,11 +66,6 @@ exports.downloadAttachments = async (req, res, next) => {
   
         })
         .catch(e => console.log('Erro ao baixar matérias, tente novamente', e));
-  
-        const allPromises = await Promise.all(promises);
-  
-        console.log(allPromises, "oi");
-
     }
 
 
