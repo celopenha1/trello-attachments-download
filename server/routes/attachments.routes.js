@@ -1,5 +1,8 @@
 const router                    = require('express').Router();
 const attachmentsController = require('../controllers/attachment.controller');
+const filesController = require("../controllers/files.controller");
+const fileController = new filesController();
+
 
 router.get(
   '/card-attachments/:cardId/:cardName', 
@@ -11,9 +14,7 @@ router.get(
 
 router.get(
   '/download-materias/:cardId', 
-  attachmentsController.downloadAttachments, 
-  attachmentsController.zipAttachments, 
-  attachmentsController.sendZipFile
+  attachmentsController.downloadAttachments
 );
 
 module.exports = router;
