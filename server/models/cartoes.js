@@ -1,6 +1,7 @@
 
 exports.findByCaderno = (cards, caderno) =>{
   
+  
   switch (caderno) {
     case 'EXECUTIVO':
       return cards.filter(card => card.name.match(/EXECUTIVO \d{2}.\d{2}(.\d{2})? l MATÉRIAS/g))

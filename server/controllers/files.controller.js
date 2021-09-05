@@ -40,7 +40,7 @@ module.exports = class File {
       readStream.pipe(res);
     });
     readStream.on("close", () => {
-      this.removeFiles();
+      // this.removeFiles();
     });
 
   }
