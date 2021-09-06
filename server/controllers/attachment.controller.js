@@ -19,6 +19,7 @@ exports.getAttachments = async (req, res) => {
     attachements.shift()
     const materias = attachements.map((attachment, index) => {
       return {
+        id: attachment.id,
         index: index + 1,
         idMember: attachment.idMember,
         fullDate: attachment.date,
@@ -37,7 +38,7 @@ exports.getAttachments = async (req, res) => {
       const textExtract = await extractor.extract(buffer);
       const extractProcess = textExtract.getBody().replace(/\s+/g, ' ').trim();
       let sanitizeText = extractProcess.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w\-]+/g, ' ');
-      
+
       return {
         nome: attachment.name,
         conteudo: extractProcess
@@ -47,7 +48,7 @@ exports.getAttachments = async (req, res) => {
     const conteudoMaterias = await Promise.all(attachmentText.map(async val => {
       return val
     }));
-    res.render('attachments', { materias, cardName, cardId, qntMaterias, conteudoMaterias })
+    res.json({ materias, cardName, cardId, qntMaterias, conteudoMaterias });
   } catch (error) {
     res.status(500).json({message:"erro na sua solicitação", error})
   }
@@ -118,3 +119,4 @@ exports.validarEdicao = async(request, response)=>{
     file: request.files
   });
 }
+

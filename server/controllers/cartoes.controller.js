@@ -20,7 +20,7 @@ const transformCards = cards=> cards.map((card, index)=>{
       id: card.id,
       name: card.name,
       data: nomeParaData(card.name),
-      labels: card.labels.map(label => label.name.split(' ')[0].split('0')[0])
+      labels: card.labels.map(label => label.name.split(' ')[0].split('0')[0])[0]
     }
   });
 
@@ -28,7 +28,7 @@ exports.executivos = async (req, res) => {
   try{
     const cardsExecutivo = await cartoesService.findByCaderno('EXECUTIVO');
     const jornais = transformCards(cardsExecutivo);
-    res.render('jornais', { jornais });
+    res.status(200).json({jornais})
   }catch(error){
     res.status(500).json({error})
   }
@@ -37,7 +37,7 @@ exports.terceiros = async (req, res) => {
   try{
     const cardsTerceiros = await cartoesService.findByCaderno('TERCEIROS');
     const jornais = transformCards(cardsTerceiros);
-    res.render('jornais', { jornais });
+    res.status(200).json({jornais})
 
   }catch(error){
     res.status(500).json({error})
@@ -48,7 +48,7 @@ exports.terceirosCasaCivil = async (req, res) => {
   try{
     const terceirosCasaCivil = await cartoesService.findByCaderno('TERCEIROS CASACIVIL');
     const jornais = transformCards(terceirosCasaCivil);
-    res.render('jornais', { jornais });
+    res.status(200).json({jornais})
   }catch(error){
     res.status(500).json({error})
 
@@ -59,7 +59,7 @@ exports.atos = async (req, res) => {
   try{
     const atos = await cartoesService.findByCaderno('ATOS');
     const jornais = transformCards(atos);
-    res.render('jornais', { jornais });
+    res.status(200).json({jornais})
   }catch(error){
     res.status(500).json({error})
 
