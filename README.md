@@ -9,6 +9,15 @@
 - The process consists of getting the files through their url, saving them, and then compressing the directory to send to the front as a buffer-stream.
 - I used promises native's methods, and native HTTP module in node to ensure that all files downloaded correctly before compressing the entire directory. 
 
+- To run this project locally, you'll need to create a .en with theses infos that you can find in Trello API website.
+  TRELLO_API_TOKEN
+  TRELLO_API_KEY
+  TRELLO_BOARD_ID
+  TRELLO_OAUTH_SECRET
+- Clone this repo and make some api calls. Have fun :)
+
+
+
 ### Tecnologies
 - NodeJS
 - Express
