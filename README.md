@@ -1,36 +1,49 @@
-# **:man: Intro**!
 
-- If you've used **trello** before, you probably won't need to download all attachments for a particular card, unless that's part of your busines logic.
+# Trello Download Attachments
 
-- In this project I implemented my personal MVC solution for do this...
+Se você utiliza/utilizou o Trello, provavelmente gostaria de baixar todos os anexos de um determinado cartão de uma só vez.
 
-- But how ?!!!!! The trello api only allows me to collect urls from the attachments of a given card.
+Até então, não há uma ferramenta gratuita para fazer isto.
 
-- The process consists of getting the files through their url, saving them, and then compressing the directory to send to the front as a buffer-stream.
-- I used promises native's methods, and native HTTP module in node to ensure that all files downloaded correctly before compressing the entire directory. 
 
-- To run this project locally, you'll need to create a .en with theses infos that you can find in Trello API website.
-  (TRELLO_API_TOKEN,
-  TRELLO_API_KEY,
-  TRELLO_BOARD_ID,
-  TRELLO_OAUTH_SECRET)
+
+
+
+## Features
+- Opção de download (em formato zip) de toos os anexos de um cartão selecionado
+- Listagem de cartões baseados em sua nomeclatura
+- Listagem de anexos de um cartão selecionado
+
+
   
-- After that, just follow the steps below.
-- cd server
-- yarn install
-- node index.js
+## API Reference
+
+#### Listagem de todos os cartões do seu quadro
+```http
+  GET /api/cartoes
+```
+#### Todos os anexos de um cartão específico
+```http
+  GET /api/cartoes/:cartaoId/attachments
+```
+#### Download de todos os anexos de um cartão específico
+```http
+  POST /api/cartoes/:cartaoId/attachments
+```
+
+#### Antes de começar, você precisa das seguintes chaves:
+- ##### Poderá ser obtidas no site oficial da API do Trello
+| Parâmetro | Tipo     | Descrição                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. sua API key |
+| `api_token` | `string` | **Required**. sua API token |
+| `oauth_token` | `string` | **Required**. trello oauth 1.0 consumer  token |
+
   
+## Autor
+
+- [@Marcelo Penha Filho](https://www.github.com/celopenha)
+
+
   
-- Clone this repo and make some api calls. Have fun :)
-
-
-
-### Tecnologies
-- NodeJS
-- Express
-- adm-zip
-- Axios
-- EJS ( javascript template engine)
-
-@Author: Marcelo Penha Filho
 
