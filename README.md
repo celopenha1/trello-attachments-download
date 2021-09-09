@@ -4,7 +4,7 @@
 
 - In this project I implemented my personal MVC solution for do this...
 
-- But how ?!!!!! The trello api only allows me to collect the urls from the attachments of a given card.
+- But how ?!!!!! The trello api only allows me to collect urls from the attachments of a given card.
 
 - The process consists of getting the files through their url, saving them, and then compressing the directory to send to the front as a buffer-stream.
 - I used promises native's methods, and native HTTP module in node to ensure that all files downloaded correctly before compressing the entire directory. 
