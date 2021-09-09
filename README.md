@@ -14,6 +14,13 @@
   TRELLO_API_KEY,
   TRELLO_BOARD_ID,
   TRELLO_OAUTH_SECRET)
+  
+- After that, just follow the steps below.
+- cd server
+- yarn install
+- node index.js
+  
+  
 - Clone this repo and make some api calls. Have fun :)
 
 
