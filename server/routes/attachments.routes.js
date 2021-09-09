@@ -12,9 +12,6 @@ router.get(
   attachmentsController.getAttachments
 );
 
-// após clicar em download, esta rotá é executada 
-// executando os middlewares nesta sequência abaixo.
-
 router.get(
   '/download-materias/:cardId', 
   attachmentsController.downloadAttachments
