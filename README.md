@@ -10,7 +10,7 @@ Até então, não há uma ferramenta gratuita para fazer isto.
 
 
 ## Features
-- Opção de download (em formato zip) de toos os anexos de um cartão selecionado
+- Opção de download (em formato zip) de todos os anexos de um cartão selecionado
 - Listagem de cartões baseados em sua nomeclatura
 - Listagem de anexos de um cartão selecionado
 
