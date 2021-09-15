@@ -35,13 +35,12 @@ Até então, não há uma ferramenta gratuita para fazer isto.
 - ##### Poderá ser obtidas no site oficial da API do Trello
 | Parâmetro | Tipo     | Descrição                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. sua API key |
-| `api_token` | `string` | **Required**. sua API token |
+| `api_key` | `string` | **Required**. TRELLO API key |
+| `api_token` | `string` | **Required**. TRELLO API token |
 | `oauth_token` | `string` | **Required**. trello oauth 1.0 consumer  token |
 
   
 ## Autor
-
 - [@Marcelo Penha Filho](https://www.github.com/celopenha)
 
 
