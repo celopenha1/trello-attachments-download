@@ -2,37 +2,23 @@
 # Trello Download Attachments
 
 Se você utiliza/utilizou o Trello, provavelmente gostaria de baixar todos os anexos de um determinado cartão de uma só vez.
-
-Até então, não há uma ferramenta gratuita para fazer isto.
-
-
-
+Óbvio, você vai precisar da sua API KEY/TOKEN. E provavelmente seus cartões terão que seguir um padrão de nomeclatura para esta estrutura funcionar ;p
 
 
 ## Features
 - Opção de download (em formato zip) de todos os anexos de um cartão selecionado
 - Listagem de cartões baseados em sua nomeclatura
-- Listagem de anexos de um cartão selecionado
-
-
+- Listagem de anexos de um cartão selecionado.
   
 ## API Reference
 
-#### Listagem de todos os cartões do seu quadro
 ```http
   GET /api/cartoes
 ```
-#### Todos os anexos de um cartão específico
 ```http
   GET /api/cartoes/:cartaoId/attachments
 ```
-#### Download de todos os anexos de um cartão específico
-```http
-  POST /api/cartoes/:cartaoId/attachments
-```
 
-#### Antes de começar, você precisa das seguintes chaves:
-- ##### Poderá ser obtidas no site oficial da API do Trello
 | Parâmetro | Tipo     | Descrição                |
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. TRELLO API key |
